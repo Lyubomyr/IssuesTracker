@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IssuesTracker</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+    	<div class="row">
+    		<div class="span2">
+		  <h4>
+	    	    <ul class="nav nav-tabs nav-stacked">
+		      <li><%= link_to "Home", root_path%></li>
+		      <li><%= link_to "Create isssue", new_ticket_path%></li>
+		      <li><%= link_to "Support user login", signin_path%></li>
+ 		    </ul>
+                  </h4>
+    		</div>
+    		<div class="span8">
+        		<%= yield %>
+    		</div>
+    		<div class="span2">
+			<div id="user_nav">
+			  <% if current_user %>
+			    Logged in as <%= current_user.name %>.
+			    <%= link_to "Log out", signout_path %>
+			  <% else %>
+			    <%= link_to "Sign up", new_user_path %> or
+			    <%= link_to "log in", signin_path %>
+			  <% end %>
+			</div>
+
+			<% flash.each do |name, msg| %>
+			  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+			<% end %>
+    	</div>
+
+    	</div>
+    </div>
+</body>
+</html>

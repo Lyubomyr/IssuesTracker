@@ -1,0 +1,27 @@
+<%- model_class = Ticket -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Your_name:</strong></dt>
+  <dd><%= @ticket.customer_name %></dd>
+  <dt><strong>Your_email:</strong></dt>
+  <dd><%= @ticket.customer_email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @ticket.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
+  <dd><%= @ticket.content %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:department) %>:</strong></dt>
+  <dd><%= @ticket.department %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @ticket.status %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              tickets_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_ticket_path(@ticket), :class => 'btn' %>
+
+</div>
