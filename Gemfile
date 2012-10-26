@@ -10,6 +10,7 @@ gem 'faker'
 gem 'foreman'
 gem 'bcrypt-ruby'
 gem 'friendly_id'
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
