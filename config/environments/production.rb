@@ -20,6 +20,18 @@ IssuesTracker::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+
+config.action_mailer.delivery_method = :smtp
+
+config.action_mailer.smtp_settings = {
+	:address => 'smtp.gmail.com',
+	:port => 25,
+	:authentication => :login,
+	:user_name => 'prumat3@gmail.com',
+	:password => 'TestingAccount' }
+
+config.action_mailer.raise_delivery_errors = true
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
