@@ -1,5 +1,5 @@
 class CustomerMailer < ActionMailer::Base
-  default from: "prumat@gmail.com"
+  default from: "prumat3@gmail.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
