@@ -4,10 +4,6 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong>Your_name:</strong></dt>
-  <dd><%= @ticket.customer_name %></dd>
-  <dt><strong>Your_email:</strong></dt>
-  <dd><%= @ticket.customer_email %></dd>
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @ticket.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
@@ -18,10 +14,25 @@
   <dd><%= @ticket.status %></dd>
 </dl>
 
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              tickets_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_ticket_path(@ticket), :class => 'btn' %>
+	  <% if current_user%>
+		<dt><strong>Assigned to:</strong></dt>
+		<%= @ticket.user_id ? @ticket.user.name : 'None'%>
+	<div class="form-actions">
+	  <%= link_to t('.back', :default => t("helpers.links.back")),
+		      tickets_path, :class => 'btn'  %>
+	  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+		      edit_ticket_path(@ticket), :class => 'btn' %>
 
+	</div>
+  <% end %>
+
+<div id = "comments">
+		<h3>Coments:</h3>
+	<%= render @comments %>
 </div>
+
+<%= form_tag create_comment_ticket_path(@ticket), remote: true do%>
+	<dt><strong>Add comment:</strong></dt>
+	<textarea id = "comment_content" name ="comment[content]" type="text" rows="3"></textarea>
+	<%= submit_tag 'Comment', action: :create_comment %>
+<% end %>

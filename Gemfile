@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'faker'
 gem 'foreman'
 gem 'bcrypt-ruby'
+gem 'friendly_id'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,6 +22,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails'
+  gem 'rails-asset-jqueryui'
 end
 
 group :production do

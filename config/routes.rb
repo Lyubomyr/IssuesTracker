@@ -6,15 +6,20 @@ IssuesTracker::Application.routes.draw do
 
   root :to => "tickets#new"
   get "pages/home"
+  #get  "tickets/my_tickets", :to => "tickets#my_tickets"
 
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :tickets
+  resources :tickets do
+	post :create_comment, on: :member
+	match :assign, on: :member
+  end
   resources :users
+
 
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
 
-  match '*a', :to => 'errors#routing'
+
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

@@ -1,10 +1,31 @@
 class TicketsController < ApplicationController
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.where('status=?', "Waiting for staff")
+  end
+
+  def assign
+	ticket = Ticket.find(params[:id])
+	ticket.user_id = current_user.id
+	ticket.save
+	redirect_to ticket
   end
 
   def show
     @ticket = Ticket.find(params[:id])
+    @comments = Comment.where("ticket_id=?", @ticket.id)
+    @comment = Comment.new
+  end
+
+  def create_comment
+    @comment = Comment.new(params[:comment])
+	if @comment
+		@comment.ticket_id = Ticket.find(params[:id]).id
+		@comment.from = Ticket.find(params[:id]).customer_name
+	end
+	respond_to do |format|
+	    @comment.save
+	    format.js
+	end
   end
 
   def new

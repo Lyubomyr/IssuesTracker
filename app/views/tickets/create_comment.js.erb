@@ -1,0 +1,6 @@
+<% if @comment.new_record? %>
+	$('textarea#comment_content').effect('highlight', { color: 'red' });
+<% else %>
+	$('div#comments').append("<%= escape_javascript(render @comment) %>");
+	$('div#<%= dom_id(@comment) %>').effect('highlight');
+<% end %>

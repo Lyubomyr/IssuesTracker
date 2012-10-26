@@ -9,7 +9,7 @@
 #  title          :string(255)
 #  content        :string(255)
 #  department     :string(255)
-#  status         :string(255)
+#  status         :string(255)      default("Waiting for staff"), not null
 #  url            :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
